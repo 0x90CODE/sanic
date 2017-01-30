@@ -176,6 +176,19 @@ def html(body, status=200, headers=None):
                         content_type="text/html; charset=utf-8")
 
 
+def file_buffer(body, mime_type=None, headers=None):
+    """
+    Returns response object with file data from a buffer rather than a resource on disk.
+    :param body: Response data to be encoded.
+    :param mime_type: Specific mime_type.
+    :param headers: Custom Headers.
+    """
+    mime_type = mime_type or 'application/x-dosexec'
+    return HTTPResponse(body_bytes=body,
+                        status=200,
+                        headers=headers,
+                        content_type=mime_type)
+
 async def file(location, mime_type=None, headers=None):
     """
     Returns response object with file data.
